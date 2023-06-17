@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="90"
+   height="90"
+   version="1.1"
+   id="svg64"
+   sodipodi:docname="systemd-green.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs68" />
+  <sodipodi:namedview
+     id="namedview66"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="7.2619866"
+     inkscape:cx="-12.875265"
+     inkscape:cy="52.533834"
+     inkscape:window-width="3395"
+     inkscape:window-height="1367"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg64" />
+  <g
+     transform="translate(14,-885.61)"
+     id="g62">
+    <path
+       style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000000;solid-opacity:1"
+       d="m -12,917.61 v 26 h 10 v -4 h -6 v -18 h 6 v -4 z m 76,0 v 4 h 6 v 18 h -6 v 4 h 10 v -26 z"
+       color="#000000"
+       font-weight="400"
+       font-family="sans-serif"
+       overflow="visible"
+       fill="#ffffff"
+       id="path54" />
+    <path
+       d="m 33,930.61 18,-10 v 20 z"
+       fill="#30d475"
+       id="path58" />
+    <circle
+       r="9"
+       cy="930.61102"
+       cx="18.000999"
+       fill="#30d475"
+       id="circle60" />
+  </g>
+</svg>
