@@ -136,17 +136,15 @@ class Extension {
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this._uuid, this._indicator);
 
-        if(!this._systemdProxy) {
-            this._systemdProxy = Gio.DBusProxy.new_sync(
-                dbus,
-                Gio.DBusProxyFlags.GET_INVALIDATED_PROPERTIES,
-                null,
-                'org.freedesktop.systemd1',
-                '/org/freedesktop/systemd1',
-                this.#systemdInterface,
-                null,
-            );
-        }
+        this._systemdProxy = Gio.DBusProxy.new_sync(
+            dbus,
+            Gio.DBusProxyFlags.GET_INVALIDATED_PROPERTIES,
+            null,
+            'org.freedesktop.systemd1',
+            '/org/freedesktop/systemd1',
+            this.#systemdInterface,
+            null,
+        );
 
         this.call_systemd_method('Subscribe');
 
@@ -205,6 +203,8 @@ class Extension {
             this._systemdProxy.disconnect(this._signalSignal);
             this._signalSignal = null;
         }
+
+        this._systemdProxy = null;
     }
 }
 
