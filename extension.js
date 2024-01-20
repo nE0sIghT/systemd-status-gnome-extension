@@ -1,18 +1,24 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-const { Gio, GLib, GObject, St } = imports.gi;
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import St from 'gi://St';
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-const PopupMenu = imports.ui.popupMenu;
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
+
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 const dbus = Gio.DBus.system;
 
 const Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
-    _init() {
+    _init(metadata) {
         super._init(0.0, 'Systemd Status');
+
+        this.metadata = metadata;
 
         this._greenIcon = this._getGIcon('systemd-green');
         this._yellowIcon = this._getGIcon('systemd-yellow');
@@ -36,10 +42,8 @@ class Indicator extends PanelMenu.Button {
     }
 
     _getGIcon(name) {
-        let metadata = ExtensionUtils.getCurrentExtension();
-
         return Gio.icon_new_for_string(
-            metadata.dir.get_child(`icons/${name}.svg`).get_path()
+            this.metadata.dir.get_child(`icons/${name}.svg`).get_path()
         );
     }
 
@@ -69,12 +73,13 @@ class Indicator extends PanelMenu.Button {
     }
 });
 
-class Extension {
+export default class SystemdStatusExtension extends Extension {
     #systemdInterface = 'org.freedesktop.systemd1.Manager';
     #variantTypeTupleOfVariant = GLib.VariantType.new('(v)')
 
-    constructor(uuid) {
-        this._uuid = uuid;
+    constructor(metadata) {
+        super(metadata);
+        this._uuid = metadata['uuid'];
     }
 
     draw_systemd_state() {
@@ -133,7 +138,7 @@ class Extension {
     }
 
     enable() {
-        this._indicator = new Indicator();
+        this._indicator = new Indicator(this.metadata);
         Main.panel.addToStatusArea(this._uuid, this._indicator);
 
         if(!this._systemdProxy) {
@@ -194,8 +199,4 @@ class Extension {
             this._signalSignal = null;
         }
     }
-}
-
-function init(meta) {
-    return new Extension(meta.uuid);
 }
