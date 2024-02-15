@@ -153,6 +153,7 @@ class Extension {
         this._signalPropertiesChanged = this._systemdProxy.connect('g-properties-changed', (dBusProxy, changed_properties, invalidated_properties) => {
             // Systemd at least 253.3 doesn't emits PropertyChanged with SystemState
             let properties = Object.keys(changed_properties.unpack());
+
             if(!properties.includes('SystemState')) {
                 for(let property of ['NFailedUnits']) {
                     if(properties.includes(property)) {
@@ -176,9 +177,20 @@ class Extension {
         });
 
         this.draw_systemd_state();
+
+        this._intervalId = setInterval(() => {
+            this._systemdProxy.set_cached_property(
+                'SystemState',
+                this.get_systemd_property('SystemState').unpack(),
+            );
+            this.draw_systemd_state();
+        }, 60 * 1000);
     }
 
     disable() {
+        clearInterval(this._intervalId);
+        this._intervalId = null;
+
         this._indicator.destroy();
         this._indicator = null;
 
