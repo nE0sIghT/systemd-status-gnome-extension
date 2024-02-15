@@ -156,6 +156,11 @@ export default class SystemdStatusExtension extends Extension {
         this._signalPropertiesChanged = this._systemdProxy.connect('g-properties-changed', (dBusProxy, changed_properties, invalidated_properties) => {
             // Systemd at least 253.3 doesn't emits PropertyChanged with SystemState
             let properties = Object.keys(changed_properties.unpack());
+
+            console.warn("Received systemd PropertiesChanged signal");
+            console.warn(properties);
+            console.warn("Systemd SystemState: " + this.get_systemd_property('SystemState').unpack());
+
             if(!properties.includes('SystemState')) {
                 for(let property of ['NFailedUnits']) {
                     if(properties.includes(property)) {
