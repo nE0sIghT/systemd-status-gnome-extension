@@ -4,6 +4,7 @@
   "uuid": "systemd-status@ne0sight.github.io",
   "url": "https://github.com/nE0sIghT/systemd-status-gnome-extension",
   "shell-version": [
-    "45"
+    "45",
+    "46"
   ]
 }

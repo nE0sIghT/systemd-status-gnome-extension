@@ -35,8 +35,8 @@ class Indicator extends PanelMenu.Button {
         this._stateMenu.add_style_class_name('padded');
         this._failedMenu.add_style_class_name('padded');
 
-        section.actor.add_actor(this._stateMenu);
-        section.actor.add_actor(this._failedMenu);
+        section.actor.add_child(this._stateMenu);
+        section.actor.add_child(this._failedMenu);
 
         this.menu.addMenuItem(section);
     }
