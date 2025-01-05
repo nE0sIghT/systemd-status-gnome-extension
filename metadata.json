@@ -5,6 +5,7 @@
   "url": "https://github.com/nE0sIghT/systemd-status-gnome-extension",
   "shell-version": [
     "45",
-    "46"
+    "46",
+    "47"
   ]
 }
